@@ -1,0 +1,31 @@
+@import './../../app/functions';
+
+page-upload {
+    .vertical-center > * {
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+    }
+    .horizontal-center {
+        width: 100%;
+        text-align: center;
+    }
+    ion-label, ion-input, ion-textarea, span {
+        font-size: 1.2em;
+        color: #fff;
+    }
+    ion-content button{
+        @include gradient(color(primary), color(secondary), color(complementary));
+    }
+    .fileName{
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        margin: auto 5px;
+        display: inline-block;
+        overflow: hidden;
+        width: 55%;
+        white-space: nowrap; 
+        text-overflow:ellipsis;
+    }
+}

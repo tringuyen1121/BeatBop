@@ -1,0 +1,16 @@
+@import './../../app/functions';
+
+page-home {
+        
+    ion-header {
+        height: 25%;
+        position: relative;
+        @include gradient(color(primary), color(secondary), color(complementary));
+    }
+    .logo{
+        width: 60%;
+        position: absolute;
+        left:3%;
+        bottom:5%;
+    }
+}

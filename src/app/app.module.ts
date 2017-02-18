@@ -1,14 +1,24 @@
+import { Thumbnails } from './../pipes/thumbnails';
+import { UploadPage } from './../pages/upload/upload';
+import { RegisterPage } from './../pages/register/register';
+import { LoginPage } from './../pages/login/login';
+import { Authentication } from './../providers/authentication';
+import { Media } from './../providers/media';
+import { HomePage } from './../pages/home/home';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 
 @NgModule({
   declarations: [
     MyApp,
-    Page1,
-    Page2
+    Page2,
+    HomePage,
+    LoginPage,
+    RegisterPage,
+    UploadPage,
+    Thumbnails
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -16,9 +26,17 @@ import { Page2 } from '../pages/page2/page2';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1,
-    Page2
+    Page2,
+    HomePage,
+    LoginPage,
+    RegisterPage,
+    UploadPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler },
+    Media,
+    Authentication,
+    Thumbnails
+  ]
 })
-export class AppModule {}
+export class AppModule { }

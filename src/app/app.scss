@@ -1,5 +1,27 @@
 // http://ionicframework.com/docs/v2/theming/
+@import 'functions';
 
+@mixin gradient($fColor, $sColor, $tColor) {
+  background: #00ad7c; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, $fColor 0%, $sColor 68%, $tColor 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, $fColor 0%,$sColor 68%,$tColor 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, $fColor 0%,$sColor 68%,$tColor 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$fColor, endColorstr=$tColor,GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-weight: 400;
+  font-style: normal;
+  src: url('../assets/fonts/Josefin-Sans-regular/Josefin-Sans-regular.eot');
+  src: url('../assets/fonts/Josefin-Sans-regular/Josefin-Sans-regular.eot?#iefix') format('embedded-opentype'),
+       local('Josefin Sans'),
+       local('Josefin-Sans-regular'),
+       url('../assets/fonts/Josefin-Sans-regular/Josefin-Sans-regular.woff2') format('woff2'),
+       url('../assets/fonts/Josefin-Sans-regular/Josefin-Sans-regular.woff') format('woff'),
+       url('../assets/fonts/Josefin-Sans-regular/Josefin-Sans-regular.ttf') format('truetype'),
+       url('../assets/fonts/Josefin-Sans-regular/Josefin-Sans-regular.svg#JosefinSans') format('svg');
+}
 
 // App Global Sass
 // --------------------------------------------------
@@ -14,3 +36,19 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.gradient{
+     @include gradient(color(primary), color(secondary), color(complementary));
+}
+
+ion-title{
+    font-family: 'Josefin Sans' !important;
+}
+
+ion-content ion-list button {
+    font-size: 2.5rem!important;
+    color: white!important;
+}
+
+
+
+

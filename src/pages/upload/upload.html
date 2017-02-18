@@ -1,0 +1,48 @@
+<!--
+  Generated template for the Upload page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Upload</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="vertical-center">
+  <ion-grid>
+    <form #uploadForm=ngForm (ngSubmit)='upload($event, uploadForm.value)'>
+      <ion-row>
+        <div style="width: 100%">
+          <ion-label>Flie</ion-label>
+          <div style="width: 100%; position: relative">
+            <button ion-button round (click)="file.click()" style="display: inline-block; width: 40%">Choose File</button>
+            <span class="fileName">{{fileName}}</span>
+          </div>
+          <input #file type="file" name="file_upload" ngModel hidden (change)="fileChange($event)">
+        </div>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label>Title</ion-label>
+          <ion-input type="text" name="title" ngModel required></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-textarea type="text" name="description" ngModel></ion-textarea>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <p class="horizontal-center">
+          <button ion-button round type="submit" [disabled]="!uploadForm.valid">UPLOAD</button>
+        </p>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

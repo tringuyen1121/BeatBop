@@ -1,0 +1,20 @@
+@import './../../app/functions';
+
+page-register {
+     .vertical-center > * {
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+    }
+    .horizontal-center {
+        width: 100%;
+        text-align: center;
+    }
+    ion-label, ion-input, ion-textarea, p {
+        font-size: 1.2em;
+        color: #fff;
+    }
+    ion-content button{
+        @include gradient(color(primary), color(secondary), color(complementary));
+    }
+}

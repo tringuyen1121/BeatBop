@@ -3,6 +3,7 @@
 $font-path: "../assets/fonts";
 
 @import "ionic.globals";
+@import "../app/functions";
 
 
 // Shared Variables
@@ -12,8 +13,10 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-
-
+$toolbar-background: transparent;
+$font-family-base: "Josefin Sans";
+$background-color: #141414;
+$label-text-color: #fff;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -24,32 +27,51 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #387ef5,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:      #00ad7c,
+  secondary:    #52d681,
+  complementary:#b5ff7d,
+  dark:         #141414,
+  danger:       #ef002f
 );
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$font-family-ios-base: "Josefin Sans";
+$background-ios-color: #141414;
+$label-ios-text-color: #fff;
+$item-ios-padding-top: 30px;
+$item-ios-padding-left: 0px;
+$toolbar-ios-border-color: transparent;
+$toolbar-ios-title-font-size: 2.5rem;
+$list-ios-background-color: transparent;
 
 
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
+$font-family-md-base: "Josefin Sans";
+$background-md-color: #141414;
+$label-md-text-color: #fff;
+$item-md-padding-top: 30px;
+$item-md-padding-left: 0px;
+$toolbar-md-title-font-size: 2.5rem;
+$list-md-background-color: transparent;
 
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
-
+$font-family-wp-base: "Josefin Sans";
+$background-wp-color: #141414;
+$label-wp-text-color: #fff;
+$item-wp-padding-top: 30px;
+$item-wp-padding-left: 0px;
+$toolbar-wp-title-font-size: 2.5rem;
+$list-wp-background-color: transparent;
 
 
 
@@ -74,5 +96,6 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
 @import "noto-sans";
+
+

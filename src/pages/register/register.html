@@ -1,0 +1,58 @@
+<!--
+  Generated template for the Register page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="vertical-center">
+  <ion-grid>
+    <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+      <ion-row>
+        <ion-item>
+          <ion-label>Username</ion-label>
+          <ion-input type="text" name="username" #username formControlName="username"></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input type="email" name="email" #email formControlName="email"> </ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input type="password" name="password" #password formControlName="password"></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label>Full name</ion-label>
+          <ion-input type="text" name="full_name" #fullname formControlName="full_name"></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item no-lines margin>
+          <ion-label style="font-size:16px" no-margin>
+            I accept the <a>Terms & Conditions</a>
+          </ion-label>
+          <ion-checkbox #terms formControlName="terms" name="terms" required></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <p class="horizontal-center">
+          <button ion-button round type="submit" [disabled]="!registerForm.valid">SIGN UP</button>
+        </p>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
