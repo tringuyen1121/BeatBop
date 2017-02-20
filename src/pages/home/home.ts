@@ -3,9 +3,8 @@ import { LoginPage } from './../login/login';
 
 import { Authentication } from './../../providers/authentication';
 import { Media } from './../../providers/media';
-import { Thumbnails } from './../../pipes/thumbnails';
 
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 /*
@@ -20,20 +19,53 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-   private mediaList: any = [];
+  private allMediaList: any = [];
+  private bbMediaList: any = [];
+
+  private resolutionRegex = /100x100/;
+  private newResolution = '500x500';
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private media:Media,
-    private auth: Authentication
-  ) {}
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private media: Media,
+    private auth: Authentication,
+    private el: ElementRef
+  ) { }
+
 
   ionViewWillEnter() {
+    //clear the bbMediaList
+    this.bbMediaList = [];
+    
     this.media.getMedia().subscribe(
       res => {
-        this.mediaList = res;
-        console.log(this.mediaList);
+        this.allMediaList = res;
+        for (let singleMedia of this.allMediaList) {
+
+          //only display music files of our team
+          if (singleMedia.title.startsWith(this.media.getKeyword())) {
+            console.log(singleMedia);
+            
+            this.media.getCover(singleMedia.title.substring(7, singleMedia.title.length))
+              .subscribe(
+              res => {
+                let item = res.results[0];
+                if (!item || !item.artworkUrl100) {
+                  //if item not found
+                  singleMedia.coverUrl = '';
+                } else {
+                  //if item found, add coverUrl property to object.
+                  singleMedia.coverUrl = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
+                  console.log(singleMedia.coverUrl);
+                }
+
+              }, err => console.log(err)
+              );
+
+            this.bbMediaList.push(singleMedia);
+          }
+        }
       }
     )
   };

@@ -1,3 +1,4 @@
+import { JsonpModule } from '@angular/http';
 import { Thumbnails } from './../pipes/thumbnails';
 import { UploadPage } from './../pages/upload/upload';
 import { RegisterPage } from './../pages/register/register';
@@ -21,7 +22,8 @@ import { Page2 } from '../pages/page2/page2';
     Thumbnails
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    JsonpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -30,8 +30,8 @@
 
 <ion-content padding>
   <ul>
-    <li *ngFor="let file of mediaList" (click)="showMedia(file.file_id)">
-      <img [alt]="file.title" [src]="'http://media.mw.metropolia.fi/wbma/uploads/' + (file.filename | thumbnails: 'large')">
+    <li *ngFor="let file of bbMediaList" (click)="showMedia(file.file_id)">
+      <img [alt]="file.title" [src]="file.coverUrl">
     </li>
   </ul>
 </ion-content>

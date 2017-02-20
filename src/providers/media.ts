@@ -1,6 +1,7 @@
 import { Authentication } from './authentication';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions, Jsonp } from '@angular/http';
+
 import 'rxjs/add/operator/map';
 
 /*
@@ -12,15 +13,23 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Media {
 
-  private url: string = 'http://media.mw.metropolia.fi/wbma';
+  private mediaUrl: string = 'http://media.mw.metropolia.fi/wbma';
   // private user: any =  JSON.parse(localStorage.getItem("user"));
   private token: string = '';
   private limit: number = 10;
 
-  constructor(public http: Http, private authService: Authentication) {}
+  private keyword: string = 'b34tb0p'; //use to distinguish files of our team
+
+  iTunesUrl: string = 'https://itunes.apple.com/search?media=music&term='
+
+  constructor(public http: Http, private authService: Authentication, private jsonp: Jsonp) { }
+
+  getKeyword = () => {
+    return this.keyword;
+  }
 
   getMedia = () => {
-    return this.http.get(this.url + '/media')
+    return this.http.get(this.mediaUrl + '/media')
       .map(
       res =>
         res.json()
@@ -28,7 +37,7 @@ export class Media {
   }
 
   getMediaByID = (id: number) => {
-    return this.http.get(this.url + '/media/' + id)
+    return this.http.get(this.mediaUrl + '/media/' + id)
       .map(
       res =>
         res.json()
@@ -37,7 +46,7 @@ export class Media {
 
   getUserByID = (id: number) => {
     this.token = this.authService.getUser().token;
-    return this.http.get(this.url + '/users/' + id + '?token=' + this.token)
+    return this.http.get(this.mediaUrl + '/users/' + id + '?token=' + this.token)
       .map(
       res =>
         res.json()
@@ -46,9 +55,18 @@ export class Media {
 
   uploadMedia = (formContent: any) => {
     this.token = this.authService.getUser().token;
-    return this.http.post(this.url + '/media?token=' + this.token, formContent)
+    return this.http.post(this.mediaUrl + '/media?token=' + this.token, formContent)
       .map(
-      res => 
+      res =>
+        res.json()
+      );
+  }
+
+  //get CoverArt of a song using Itunes Search API
+  getCover = (title: string) => {
+    return this.jsonp.get(this.iTunesUrl + title + '&callback=JSONP_CALLBACK')
+      .map(
+      res =>
         res.json()
       );
   }

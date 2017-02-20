@@ -40,7 +40,8 @@ export class UploadPage {
 
     const fd = new FormData();
     fd.append('file', file);
-    fd.append('title', value.title);
+    //append the keyword to the begining of title
+    fd.append('title', this.uploadService.getKeyword() + value.title);
     fd.append('description', value.description);
 
     this.uploadService.uploadMedia(fd)
