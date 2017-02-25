@@ -1,0 +1,68 @@
+@import './../../app/functions';
+@import './../../app/app';
+
+page-search {
+
+     ion-header {
+        height: 27%;
+        @include gradient(color(primary), color(secondary), color(complementary));
+    }
+
+    .toolbar-content-md {
+        position: absolute;  // take a flexbox item out of the flow
+        width: 100%;         // take all the space, including that of the buttons on the left and right side
+        z-index: -1;         // go under the buttons
+    }
+
+    .toolbar-md * {
+        height: 100%;
+    }
+
+    .logo{
+        display: inline-block;
+        height: 80%!important;
+    }
+
+    form {
+        margin: 0 20px;
+
+        ion-input{
+            color: white;
+        }
+        ion-label{
+            text-align: center;
+        }
+    }
+
+
+    .search-button{
+        border-color: white;
+        color: white;
+        font-size: 1.5rem!important;
+        border-width: 2px!important;
+        padding: 0.5em 1.5em!important;
+    }
+
+    #resultList{
+        list-style: none;
+
+        li{
+            display: flex;
+            flex-direction: row;
+            width: 100%; 
+            
+            img{
+                width: 19%;
+                height: 19%;
+            }
+            .details{
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 1em;
+                color: white;
+            }
+        }
+    }
+}

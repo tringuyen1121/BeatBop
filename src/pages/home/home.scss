@@ -1,9 +1,10 @@
 @import './../../app/functions';
+@import './../../app/app';
 
 page-home {
         
     ion-header {
-        height: 25%;
+        height: 27%;
         position: relative;
         @include gradient(color(primary), color(secondary), color(complementary));
     }
@@ -12,5 +13,23 @@ page-home {
         position: absolute;
         left:3%;
         bottom:5%;
+    }
+
+    ul {
+        @include flexbox_grid(3, 16px);
+    }
+
+
+    ul li {
+        margin-bottom: 16px;
+    }
+
+    @media screen and (min-width: 1000px) {
+        ul {
+            @include flexbox_grid(6, 16px);
+        }
+        ul li {
+            margin-bottom: 16px;
+        }
     }
 }

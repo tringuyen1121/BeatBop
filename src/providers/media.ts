@@ -29,7 +29,7 @@ export class Media {
   }
 
   getMedia = () => {
-    return this.http.get(this.mediaUrl + '/media')
+    return this.http.get(this.mediaUrl + '/media/all')
       .map(
       res =>
         res.json()
@@ -65,6 +65,15 @@ export class Media {
   //get CoverArt of a song using Itunes Search API
   getCover = (title: string) => {
     return this.jsonp.get(this.iTunesUrl + title + '&callback=JSONP_CALLBACK')
+      .map(
+      res =>
+        res.json()
+      );
+  }
+
+  searchMedia = (title) => {
+    this.token = this.authService.getUser().token;
+    return this.http.post(this.mediaUrl + '/media/search?token=' + this.token, title)
       .map(
       res =>
         res.json()

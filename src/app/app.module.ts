@@ -1,3 +1,5 @@
+import { Title } from './../pipes/title';
+import { SearchPage } from './../pages/search/search';
 import { JsonpModule } from '@angular/http';
 import { Thumbnails } from './../pipes/thumbnails';
 import { UploadPage } from './../pages/upload/upload';
@@ -19,7 +21,9 @@ import { Page2 } from '../pages/page2/page2';
     LoginPage,
     RegisterPage,
     UploadPage,
-    Thumbnails
+    Thumbnails,
+    SearchPage,
+    Title
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -32,7 +36,8 @@ import { Page2 } from '../pages/page2/page2';
     HomePage,
     LoginPage,
     RegisterPage,
-    UploadPage
+    UploadPage,
+    SearchPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler },

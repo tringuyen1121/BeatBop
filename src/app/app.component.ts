@@ -1,3 +1,4 @@
+import { SearchPage } from './../pages/search/search';
 import { UploadPage } from './../pages/upload/upload';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
@@ -16,16 +17,16 @@ export class MyApp {
 
   rootPage: any = LoginPage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public menuCtrl: MenuController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage},
-      { title: 'Upload', component: UploadPage},
-      { title: 'Page Two', component: Page2 }
+      { title: 'Home', component: HomePage },
+      { title: 'Upload', component: UploadPage },
+      { title: 'Search', component: SearchPage }
     ];
 
   }
@@ -42,7 +43,7 @@ export class MyApp {
   openPage(page) {
     if (page.title === 'Home') {
       this.menuCtrl.close();
-    } else {    
+    } else {
       this.nav.push(page.component);
     }
   }

@@ -9,6 +9,46 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$fColor, endColorstr=$tColor,GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
+//align the last row to grid
+@mixin flexbox_grid($columns, $gutter_width){
+  display: flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+  justify-content: flex-start;
+
+  > *{
+    @include flexbox_cell($columns, $gutter_width);
+  }
+}
+
+// apply to the cell (for ex. a <LI> element)
+@mixin flexbox_cell($columns, $gutter_width){
+  $base_width: 100 / $columns;
+  $gutters: $columns - 1;
+  $gutter_offset: $gutter_width * $gutters / $columns;
+
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto; // IE10 doesn't support calc() here
+
+  box-sizing:border-box; // freely apply borders/paddings to items
+  width: calc( #{$base_width}% - #{$gutter_offset} );
+
+  // remove useless margins (for cascading breakponts)
+  &:nth-child(#{$columns}n){
+    margin-right: 0;
+  }
+
+  // apply margin
+  @for $i from 0 through ($gutters){
+    @if($i != 0){
+      &:nth-child(#{$columns}n+#{$i}){
+        margin-right: $gutter_width;
+      }
+    }
+  }
+}
+
 @font-face {
   font-family: 'Josefin Sans';
   font-weight: 400;
@@ -47,6 +87,25 @@ ion-title{
 ion-content ion-list button {
     font-size: 2.5rem!important;
     color: white!important;
+}
+
+//center title
+ion-header {
+  .button-md {
+    box-shadow: none;
+  }
+
+  .toolbar-title {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    height: 100%; //make .toolbar-title in IOS take 100% height
+  }
 }
 
 

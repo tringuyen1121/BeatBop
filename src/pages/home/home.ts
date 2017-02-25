@@ -1,3 +1,4 @@
+import { SearchPage } from './../search/search';
 import { UploadPage } from './../upload/upload';
 import { LoginPage } from './../login/login';
 
@@ -37,34 +38,35 @@ export class HomePage {
   ionViewWillEnter() {
     //clear the bbMediaList
     this.bbMediaList = [];
-    
+
     this.media.getMedia().subscribe(
       res => {
-        this.allMediaList = res;
+        this.allMediaList = res.files;
         for (let singleMedia of this.allMediaList) {
 
-          //only display music files of our team
-          if (singleMedia.title.startsWith(this.media.getKeyword())) {
-            console.log(singleMedia);
-            
-            this.media.getCover(singleMedia.title.substring(7, singleMedia.title.length))
-              .subscribe(
-              res => {
-                let item = res.results[0];
-                if (!item || !item.artworkUrl100) {
-                  //if item not found
-                  singleMedia.coverUrl = '';
-                } else {
-                  //if item found, add coverUrl property to object.
-                  singleMedia.coverUrl = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
-                  console.log(singleMedia.coverUrl);
-                }
+          this.media.getMediaByID(singleMedia.file_id).subscribe(
+            res => {
+              singleMedia = res;
 
-              }, err => console.log(err)
-              );
+              //only display music files of our team
+              if (singleMedia.title.startsWith(this.media.getKeyword())) {
 
-            this.bbMediaList.push(singleMedia);
-          }
+                this.media.getCover(singleMedia.title.substring(7, singleMedia.title.length))
+                  .subscribe(
+                  res => {
+                    let item = res.results[0];
+                    if (!item || !item.artworkUrl100) {
+                      //if item not found
+                      singleMedia.coverUrl = '';
+                    } else {
+                      //if item found, add coverUrl property to object.
+                      singleMedia.coverUrl = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
+                    }
+                    this.bbMediaList.push(singleMedia);
+                  }, err => console.log(err)
+                  )
+              }
+            });
         }
       }
     )
@@ -72,6 +74,10 @@ export class HomePage {
 
   navToUpload = () => {
     this.navCtrl.push(UploadPage);
+  }
+
+  navToSearch = () => {
+    this.navCtrl.push(SearchPage);
   }
 
   // showMedia = (id: number) => {

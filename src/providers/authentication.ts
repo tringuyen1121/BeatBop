@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class Authentication {
 
-   logged: Boolean = false;
+  logged: Boolean = false;
 
   private url: string = 'http://media.mw.metropolia.fi/wbma';
 
