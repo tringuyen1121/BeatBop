@@ -106,6 +106,12 @@ ion-header {
     justify-content: center;
     height: 100%; //make .toolbar-title in IOS take 100% height
   }
+
+  .toolbar-content-md {
+      position: absolute;  // take a flexbox item out of the flow
+      width: 100%;         // take all the space, including that of the buttons on the left and right side
+      z-index: -1;         // go under the buttons
+  }
 }
 
 

@@ -4,14 +4,7 @@
 page-search {
 
      ion-header {
-        height: 27%;
         @include gradient(color(primary), color(secondary), color(complementary));
-    }
-
-    .toolbar-content-md {
-        position: absolute;  // take a flexbox item out of the flow
-        width: 100%;         // take all the space, including that of the buttons on the left and right side
-        z-index: -1;         // go under the buttons
     }
 
     .toolbar-md * {
