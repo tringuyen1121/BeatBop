@@ -70,4 +70,8 @@ export class SearchPage {
   showMedia = (id: number) => {
      this.navCtrl.push(PlayerPage, { "id": id });
   }
+
+  back = () => {
+    this.navCtrl.pop();
+  }
 }

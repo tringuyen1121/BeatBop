@@ -17,4 +17,9 @@ page-register {
     ion-content button{
         @include gradient(color(primary), color(secondary), color(complementary));
     }
+    ion-checkbox {
+        button {
+            background: transparent!important;
+        }
+    }
 }

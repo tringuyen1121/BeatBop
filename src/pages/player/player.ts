@@ -22,7 +22,7 @@ export class PlayerPage {
   private selectedMedia: any = {};
   private sourcePath: string = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
-  private isPlaying: boolean = false;
+  public isPlaying: boolean = false;
 
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
@@ -38,6 +38,7 @@ export class PlayerPage {
   }
 
   ionViewWillEnter() {
+    console.log(this.isPlaying);
 
     this.media.getMediaByID(this.id)
       .subscribe(
@@ -69,6 +70,11 @@ export class PlayerPage {
           console.log(this.selectedMedia);
       }, err => console.log(err)
       );
+  }
+
+  back = () => {
+    this.pauseSelectedTrack();
+    this.navCtrl.pop();
   }
 
   infoTrack = (track) => {

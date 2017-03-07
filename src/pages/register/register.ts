@@ -35,10 +35,6 @@ export class RegisterPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
-  }
-
   register = (value: any) => {
     //console.log(value);
     this.registerService.setUser(value);
@@ -58,6 +54,10 @@ export class RegisterPage {
         });
         alert.present(prompt);
       });
+  }
+
+  back = () => {
+    this.navCtrl.pop();
   }
 
 }

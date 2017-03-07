@@ -2,6 +2,10 @@
 @import './../../app/app';
 
 page-player {
+    .no-scroll .scroll-content{
+         overflow: hidden;
+    }
+    
     .logo{
         display: inline-block;
         height: 70%!important;
@@ -19,6 +23,9 @@ page-player {
     time{
         color: white;
     }
+    .range-md [range-left], .range-ios [range-left] {
+        width: 3.3rem;
+    }
 
     .range-bar-active {
         @include gradient(color(primary), color(secondary), color(complementary));
@@ -28,6 +35,25 @@ page-player {
         button{
             background-color: transparent;
             box-shadow: none;
+        }
+
+        .icon-large {
+            ion-icon{
+                
+            }
+            ion-icon::before {
+                font-size: 33px!important;
+                color: color(secondary);
+            }
+        }
+
+        .icon-medium {
+            ion-icon {
+                transform: translateY(-25%);
+            }
+            ion-icon::before{
+                color: color(secondary);
+            }
         }
     }
     
