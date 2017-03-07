@@ -24,11 +24,11 @@
 
 <ion-content padding>
   <ul no-margin no-padding id="resultList">
-    <li *ngFor="let file of resultList" margin-bottom>
-      <img [alt]="file.title" [src]="file.coverUrl">
+    <li *ngFor="let file of resultList" margin-bottom (click)="showMedia(file.file_id)">
+      <img [alt]="file.title" [src]="file.art">
       <div class="details">
         <h3 style="margin-bottom: 10px; font-size: 1.5em">{{file.title | title}}</h3>
-        <h5 no-margin>{{file.username}}</h5>
+        <h5 no-margin>{{file.artist}}</h5>
       </div>
     </li>
   </ul>

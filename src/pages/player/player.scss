@@ -1,0 +1,34 @@
+@import './../../app/functions';
+@import './../../app/app';
+
+page-player {
+    .logo{
+        display: inline-block;
+        height: 70%!important;
+    }
+
+    h5, p {
+        color: white;
+        margin: 8px 0!important;
+    }
+
+    #progress-bar-and-buttons{
+        padding: 0 16px;
+    }
+
+    time{
+        color: white;
+    }
+
+    .range-bar-active {
+        @include gradient(color(primary), color(secondary), color(complementary));
+    }
+
+    #operate-buttons {
+        button{
+            background-color: transparent;
+            box-shadow: none;
+        }
+    }
+    
+}

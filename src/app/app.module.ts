@@ -1,3 +1,5 @@
+import { TrackMenuPage } from './../pages/track-menu/track-menu';
+import { PlayerPage } from './../pages/player/player';
 import { Title } from './../pipes/title';
 import { SearchPage } from './../pages/search/search';
 import { JsonpModule } from '@angular/http';
@@ -10,6 +12,7 @@ import { Media } from './../providers/media';
 import { HomePage } from './../pages/home/home';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicAudioModule } from 'ionic-audio';
 import { MyApp } from './app.component';
 
 @NgModule({
@@ -21,11 +24,14 @@ import { MyApp } from './app.component';
     UploadPage,
     Thumbnails,
     SearchPage,
-    Title
+    Title,
+    PlayerPage,
+    TrackMenuPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    JsonpModule
+    JsonpModule,
+    IonicAudioModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +40,9 @@ import { MyApp } from './app.component';
     LoginPage,
     RegisterPage,
     UploadPage,
-    SearchPage
+    SearchPage,
+    PlayerPage,
+    TrackMenuPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler },

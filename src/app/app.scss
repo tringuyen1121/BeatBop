@@ -2,11 +2,11 @@
 @import 'functions';
 
 @mixin gradient($fColor, $sColor, $tColor) {
-  background: #00ad7c; /* Old browsers */
-  background: -moz-linear-gradient(-45deg, $fColor 0%, $sColor 68%, $tColor 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, $fColor 0%,$sColor 68%,$tColor 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, $fColor 0%,$sColor 68%,$tColor 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$fColor, endColorstr=$tColor,GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: #00ad7c !important; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, $fColor 0%, $sColor 68%, $tColor 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, $fColor 0%,$sColor 68%,$tColor 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, $fColor 0%,$sColor 68%,$tColor 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$fColor, endColorstr=$tColor,GradientType=1 ) !important; /* IE6-9 fallback on horizontal gradient */
 }
 
 //align the last row to grid
@@ -111,6 +111,9 @@ ion-header {
       position: absolute;  // take a flexbox item out of the flow
       width: 100%;         // take all the space, including that of the buttons on the left and right side
       z-index: -1;         // go under the buttons
+  }
+  .toolbar-md * {
+        height: 100%;
   }
 }
 

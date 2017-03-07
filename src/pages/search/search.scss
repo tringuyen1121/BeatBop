@@ -3,17 +3,13 @@
 
 page-search {
 
-     ion-header {
+    ion-header {
         @include gradient(color(primary), color(secondary), color(complementary));
-    }
-
-    .toolbar-md * {
-        height: 100%;
     }
 
     .logo{
         display: inline-block;
-        height: 80%!important;
+        height: 70%!important;
     }
 
     form {
@@ -55,6 +51,12 @@ page-search {
                 justify-content: center;
                 margin-left: 1em;
                 color: white;
+
+                h3 {
+                    white-space: nowrap; 
+                    text-overflow:ellipsis;
+                    overflow: hidden;
+                }
             }
         }
     }

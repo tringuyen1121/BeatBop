@@ -1,3 +1,4 @@
+import { PlayerPage } from './../player/player';
 import { SearchPage } from './../search/search';
 import { UploadPage } from './../upload/upload';
 import { LoginPage } from './../login/login';
@@ -57,10 +58,10 @@ export class HomePage {
                     let item = res.results[0];
                     if (!item || !item.artworkUrl100) {
                       //if item not found
-                      singleMedia.coverUrl = '';
+                      singleMedia.art = '';
                     } else {
                       //if item found, add coverUrl property to object.
-                      singleMedia.coverUrl = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
+                      singleMedia.art = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
                     }
                     this.bbMediaList.push(singleMedia);
                   }, err => console.log(err)
@@ -80,9 +81,9 @@ export class HomePage {
     this.navCtrl.push(SearchPage);
   }
 
-  // showMedia = (id: number) => {
-  //   this.navCtrl.push(PlayerPage, { "id": id });
-  // }
+  showMedia = (id: number) => {
+     this.navCtrl.push(PlayerPage, { "id": id });
+  }
 
   logout = () => {
     localStorage.removeItem("user");

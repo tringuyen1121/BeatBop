@@ -15,7 +15,8 @@ export class Title {
     Takes a value and makes it lowercase.
    */
   transform(value: string): any {
-    value = value.substring(7,value.length) + ''; // make sure it's a string
+    value = value + '';
+    value = value.substring(7,value.length); // make sure it's a string
     return value;
   }
 }
