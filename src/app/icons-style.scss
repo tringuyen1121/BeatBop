@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: 'icomoon';
-  src:  url('#{$icomoon-font-path}/icomoon.eot?ip0jbk');
-  src:  url('#{$icomoon-font-path}/icomoon.eot?ip0jbk#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/icomoon.ttf?ip0jbk') format('truetype'),
-    url('#{$icomoon-font-path}/icomoon.woff?ip0jbk') format('woff'),
-    url('#{$icomoon-font-path}/icomoon.svg?ip0jbk#icomoon') format('svg');
+  src:  url('#{$icomoon-font-path}/icomoon.eot?97jh6x');
+  src:  url('#{$icomoon-font-path}/icomoon.eot?97jh6x#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/icomoon.ttf?97jh6x') format('truetype'),
+    url('#{$icomoon-font-path}/icomoon.woff?97jh6x') format('woff'),
+    url('#{$icomoon-font-path}/icomoon.svg?97jh6x#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -32,6 +32,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cancel {
+  &:before {
+    content: $icon-cancel;
+  }
+}
 .icon-checked {
   &:before {
     content: $icon-checked;

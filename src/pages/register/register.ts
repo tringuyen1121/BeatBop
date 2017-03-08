@@ -28,7 +28,7 @@ export class RegisterPage {
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
-      email: ['',  Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
       full_name: [''],
       terms: [false, Validators.pattern('true')]
@@ -39,21 +39,27 @@ export class RegisterPage {
     //console.log(value);
     this.registerService.setUser(value);
     this.registerService.getUser().terms = undefined;
-    this.registerService.register().subscribe(
+    this.registerService.checkUsername(value.username).subscribe(
       res => {
-        if (res) {
-          this.navCtrl.push(LoginPage);
+        console.log(res.available);
+        if (res.available) {
+          this.registerService.register().subscribe(
+            res => {
+              if (res) {
+                this.navCtrl.push(LoginPage);
+              }
+            }, err => console.log(err)
+          );
+        } else {
+          let alert = this.alertCtrl.create({
+            title: 'Register Fail',
+            subTitle: "Username is existed!",
+            buttons: ['OK']
+          });
+          alert.present(prompt);
         }
-      }, err => {
-        console.log(err);
-
-        let alert = this.alertCtrl.create({
-          title: 'Register Fail',
-          subTitle: "Username is existed!",
-          buttons: ['OK']
-        });
-        alert.present(prompt);
-      });
+      }, err => console.log(err)
+    );
   }
 
   back = () => {

@@ -35,4 +35,13 @@ export class Comment {
         res.json()
       );
   }
+
+    deleteComment = (id) => {
+    this.token = this.auth.getUser().token;
+    return this.http.delete(this.url + '/comments/' + id + '?token=' + this.token)
+      .subscribe(
+      res =>
+        res.json()
+      );
+  }
 }

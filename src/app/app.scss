@@ -38,7 +38,8 @@
 }
 
 //create Icon set
-@include makeIcon(icon-checked, '\e911'); //checked
+@include makeIcon(icon-cancel, '\e911'); //cancel
+@include makeIcon(icon-checked, '\e912'); //checked
 @include makeIcon(icon-back, '\e900'); //back
 @include makeIcon(icon-forward, '\e901'); //forward
 @include makeIcon(icon-heart, '\e902'); //heart

@@ -13,7 +13,7 @@
 
       <button ion-button id="like-number">
         <ion-icon name="icon-heart" color="danger"></ion-icon>
-        <span text-lowercase style="margin: auto 7px; font-size: 1.6rem" color="dark">10 people</span>
+        <span text-lowercase style="margin: auto 7px; font-size: 1.6rem" color="dark">{{likeNumber}} like{{ likeNumber > 1 ? 's' : '' }}</span>
       </button>
     </ion-buttons>
 
@@ -22,11 +22,11 @@
 
 
 <ion-content>
-  <ion-card padding *ngFor="let comment of commentList">
+  <ion-card padding *ngFor="let comment of commentList" (press)="presentConfirm($event, comment.comment_id, comment.user_id)">
     <h4>{{comment.username}}</h4>
     <p>{{comment.comment}}</p>
     <ion-row text-right>
-      <span style="color:#9f9f9f">3h</span>
+      <span style="color:#9f9f9f">{{comment.time}}</span>
     </ion-row>
   </ion-card>
 </ion-content>
