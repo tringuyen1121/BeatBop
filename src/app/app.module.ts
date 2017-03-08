@@ -1,5 +1,4 @@
 import { Player } from './../providers/player';
-import { PlayerBarComponent } from './../components/player-bar/player-bar';
 import { Comment } from './../providers/comment';
 import { CommentPage } from './../pages/comment/comment';
 import { Favourite } from './../providers/favourite';
@@ -33,7 +32,6 @@ import { MyApp } from './app.component';
     PlayerPage,
     TrackMenuPage,
     CommentPage,
-    PlayerBarComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -51,7 +49,6 @@ import { MyApp } from './app.component';
     PlayerPage,
     TrackMenuPage,
     CommentPage,
-    PlayerBarComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler },

@@ -1,4 +1,3 @@
-import { AudioProvider } from 'ionic-audio';
 import { PlayerPage } from './../player/player';
 import { SearchPage } from './../search/search';
 import { UploadPage } from './../upload/upload';
@@ -6,6 +5,7 @@ import { LoginPage } from './../login/login';
 
 import { Authentication } from './../../providers/authentication';
 import { Media } from './../../providers/media';
+import { Player } from './../../providers/player';
 
 import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -26,6 +26,7 @@ export class HomePage {
   private bbMediaList: any = [];
 
   private playerBarShown: boolean = false;
+  private playingTrack: any = {};
 
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
@@ -35,7 +36,7 @@ export class HomePage {
     public navParams: NavParams,
     private media: Media,
     private auth: Authentication,
-    private audioService: AudioProvider,
+    private playerService: Player,
     private el: ElementRef
   ) { }
 
@@ -75,7 +76,7 @@ export class HomePage {
         }
       })
 
-      if (this.audioService.current != undefined) {
+      if(this.playerService.isPlaying) {
         this.playerBarShown = true;
       }
   }
