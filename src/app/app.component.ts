@@ -4,7 +4,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from './../pages/login/login';
 import { HomePage } from './../pages/home/home';
 
@@ -26,7 +25,9 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Upload', component: UploadPage },
-      { title: 'Search', component: SearchPage }
+      { title: 'Search', component: SearchPage },
+      { title: 'Chart', component: HomePage },
+      { title: 'Profile', component: HomePage }
     ];
 
   }
@@ -47,4 +48,6 @@ export class MyApp {
       this.nav.push(page.component);
     }
   }
+
+  
 }

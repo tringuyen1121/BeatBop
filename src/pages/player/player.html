@@ -58,21 +58,41 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-buttons left>
-      <button ion-button icon-only (click)="setLike()">
-        <ion-icon name="icon-heart-outline" *ngIf="!hasLiked"></ion-icon>
-        <ion-icon name="icon-heart" *ngIf="hasLiked" color="contrast"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons text-center>
-      <button ion-button icon-only>
-        <ion-icon name="icon-share"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-buttons right>
-      <button ion-button icon-only (click)="presentPopover($event)">
-        <ion-icon name="icon-more"></ion-icon>
-      </button>
-    </ion-buttons>
+    <ion-row>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only (click)="setLike()">
+            <ion-icon name="icon-heart-outline" *ngIf="!hasLiked"></ion-icon>
+            <ion-icon name="icon-heart" *ngIf="hasLiked" color="contrast"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only (click)="navToComment()">
+            <ion-icon name="icon-comment-bubble"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only>
+            <ion-icon name="icon-share"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only (click)="presentPopover($event)">
+            <ion-icon name="icon-more"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+    </ion-row>
   </ion-toolbar>
 </ion-footer>

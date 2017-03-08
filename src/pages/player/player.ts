@@ -1,12 +1,14 @@
+import { CommentPage } from './../comment/comment';
 import { LoginPage } from './../login/login';
 import { SearchPage } from './../search/search';
-import { Favourite } from './../../providers/favourite';
 import { TrackMenuPage } from './../track-menu/track-menu';
+
+import { Favourite } from './../../providers/favourite';
 import { Media } from './../../providers/media';
 import { Authentication } from './../../providers/authentication';
 
 import { Component } from '@angular/core';
-import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, ViewController } from 'ionic-angular';
 import { AudioProvider } from 'ionic-audio';
 
 /*
@@ -38,6 +40,7 @@ export class PlayerPage {
     public navParams: NavParams,
     private audioProvider: AudioProvider,
     public popoverCtrl: PopoverController,
+    public viewCtrl: ViewController,
     private auth: Authentication,
     private media: Media,
     private fav: Favourite) {
@@ -98,10 +101,22 @@ export class PlayerPage {
   }
 
   navToSearch = () => {
-    this.navCtrl.push(SearchPage);
+    this.pauseSelectedTrack();
+    this.navCtrl.push(SearchPage)
+    .then(() => {
+        // find the index of the current view controller:
+        const index = this.viewCtrl.index;
+        // then remove it from the navigation stack
+        this.navCtrl.remove(index);
+      });
+  }
+
+  navToComment = () => {
+    this.navCtrl.push(CommentPage, { "id": this.id});
   }
 
   logout = () => {
+    this.pauseSelectedTrack();
     localStorage.removeItem("user");
     this.auth.removeUser();
     this.auth.logged = false;
@@ -114,9 +129,7 @@ export class PlayerPage {
 
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(TrackMenuPage);
-    popover.present({
-      ev: myEvent
-    });
+    popover.present();
   }
 
   operateSelectedTrack = () => {
