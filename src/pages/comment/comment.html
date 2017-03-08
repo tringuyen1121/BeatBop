@@ -1,0 +1,48 @@
+<!--
+  Generated template for the Comment page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons left>
+      <button ion-button icon-only margin-horizontal (click)="back()">
+        <ion-icon name="icon-back" color="dark"></ion-icon>
+      </button>
+
+      <button ion-button id="like-number">
+        <ion-icon name="icon-heart" color="danger"></ion-icon>
+        <span text-lowercase style="margin: auto 7px; font-size: 1.6rem" color="dark">10 people</span>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card padding *ngFor="let comment of commentList">
+    <h4>{{comment.username}}</h4>
+    <p>{{comment.comment}}</p>
+    <ion-row text-right>
+      <span style="color:#9f9f9f">3h</span>
+    </ion-row>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-navbar no-padding>
+    <form #commentForm="ngForm" (ngSubmit)="postComment(commentForm.value); commentForm.reset()" id="commentForm">
+      <ion-item padding-left>
+        <ion-textarea name="comment" placeholder="Add a comment..." ngModel required></ion-textarea>
+      </ion-item>
+
+      <ion-buttons left no-margin>
+        <button icon-only ion-button no-margin type="submit" [disabled]="!commentForm.valid">
+          <ion-icon name="icon-checked"></ion-icon>
+        </button>
+      </ion-buttons>
+    </form>
+  </ion-navbar>
+</ion-footer>

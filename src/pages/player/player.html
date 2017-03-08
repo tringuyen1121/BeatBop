@@ -59,8 +59,9 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons left>
-      <button ion-button icon-only>
-        <ion-icon name="icon-heart-outline"></ion-icon>
+      <button ion-button icon-only (click)="setLike()">
+        <ion-icon name="icon-heart-outline" *ngIf="!hasLiked"></ion-icon>
+        <ion-icon name="icon-heart" *ngIf="hasLiked" color="contrast"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons text-center>

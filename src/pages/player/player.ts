@@ -1,3 +1,6 @@
+import { LoginPage } from './../login/login';
+import { SearchPage } from './../search/search';
+import { Favourite } from './../../providers/favourite';
 import { TrackMenuPage } from './../track-menu/track-menu';
 import { Media } from './../../providers/media';
 import { Authentication } from './../../providers/authentication';
@@ -22,6 +25,9 @@ export class PlayerPage {
   private selectedMedia: any = {};
   private sourcePath: string = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
+  private favouriteList: any = [];
+
+  private hasLiked: boolean = false;
   public isPlaying: boolean = false;
 
   private resolutionRegex = /100x100/;
@@ -33,8 +39,10 @@ export class PlayerPage {
     private audioProvider: AudioProvider,
     public popoverCtrl: PopoverController,
     private auth: Authentication,
-    private media: Media) {
-    this.id = this.navParams.get("id");
+    private media: Media,
+    private fav: Favourite) {
+      this.id = this.navParams.get("id");
+      this.media.setCurrentMediaID(this.id);
   }
 
   ionViewWillEnter() {
@@ -67,14 +75,37 @@ export class PlayerPage {
             }
           });
 
-          console.log(this.selectedMedia);
+        console.log(this.selectedMedia);
       }, err => console.log(err)
       );
+
+    this.fav.getFavouriteByFile(this.id)
+      .subscribe(
+      res => {
+        this.favouriteList = res;
+        console.log(this.favouriteList);
+        for (let favourite of this.favouriteList) {
+          if (this.auth.getUser().user_id === favourite.user_id) {
+            this.hasLiked = true;
+          }
+        }
+      });
   }
 
   back = () => {
     this.pauseSelectedTrack();
     this.navCtrl.pop();
+  }
+
+  navToSearch = () => {
+    this.navCtrl.push(SearchPage);
+  }
+
+  logout = () => {
+    localStorage.removeItem("user");
+    this.auth.removeUser();
+    this.auth.logged = false;
+    this.navCtrl.setRoot(LoginPage);
   }
 
   infoTrack = (track) => {
@@ -98,14 +129,30 @@ export class PlayerPage {
     // use AudioProvider to control selected track 
     this.audioProvider.play(this.selectedMedia.id);
   }
-  
-  pauseSelectedTrack= () => {
+
+  pauseSelectedTrack = () => {
     this.isPlaying = false;
-     // use AudioProvider to control selected track
-     this.audioProvider.pause(this.selectedMedia.id);
+    // use AudioProvider to control selected track
+    this.audioProvider.pause(this.selectedMedia.id);
   }
-         
+
   onTrackFinished(track: any) {
     console.log('Track finished', track)
+  }
+
+  setLike = () => {
+    if (!this.hasLiked) {
+      let param: any = {};
+      param.file_id = +this.id;
+      this.fav.createFavorite(param)
+        .subscribe(res => {
+          this.hasLiked = !this.hasLiked;
+        });
+    } else {
+      this.fav.deleteFavorite(this.id)
+        .subscribe(res => {
+          this.hasLiked = !this.hasLiked;
+        });
+    }
   }
 }

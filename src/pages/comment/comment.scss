@@ -1,0 +1,38 @@
+@import './../../app/functions';
+
+page-comment {
+    ion-content, ion-header, ion-footer {
+        background-color: white!important;
+    }
+
+    button {
+        background: transparent!important;
+        box-shadow: none!important;;
+    }
+
+    #like-number{
+        .icon-ios {
+            transform: translateY(-5%);
+        }
+        transform: translateY(0.5%);
+    }
+
+    #commentForm {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        button {
+            height: 100%;
+            width: 4.5em;
+            background-color: color(primary)!important;
+        }
+    }
+
+    ion-card{
+        h4 {
+            font-weight: bold!important;
+        }
+    }
+
+}

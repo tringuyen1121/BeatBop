@@ -77,12 +77,12 @@ export class HomePage {
     this.navCtrl.push(UploadPage);
   }
 
-  navToSearch = () => {
-    this.navCtrl.push(SearchPage);
+  showMedia = (id: number) => {
+    this.navCtrl.push(PlayerPage, { "id": id });
   }
 
-  showMedia = (id: number) => {
-     this.navCtrl.push(PlayerPage, { "id": id });
+  navToSearch = () => {
+    this.navCtrl.push(SearchPage);
   }
 
   logout = () => {

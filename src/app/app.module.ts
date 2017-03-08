@@ -1,3 +1,6 @@
+import { Comment } from './../providers/comment';
+import { CommentPage } from './../pages/comment/comment';
+import { Favourite } from './../providers/favourite';
 import { TrackMenuPage } from './../pages/track-menu/track-menu';
 import { PlayerPage } from './../pages/player/player';
 import { Title } from './../pipes/title';
@@ -26,7 +29,8 @@ import { MyApp } from './app.component';
     SearchPage,
     Title,
     PlayerPage,
-    TrackMenuPage
+    TrackMenuPage,
+    CommentPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -42,13 +46,16 @@ import { MyApp } from './app.component';
     UploadPage,
     SearchPage,
     PlayerPage,
-    TrackMenuPage
+    TrackMenuPage,
+    CommentPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler },
     Media,
     Authentication,
-    Thumbnails
+    Thumbnails,
+    Favourite,
+    Comment
   ]
 })
 export class AppModule { }

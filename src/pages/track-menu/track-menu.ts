@@ -1,3 +1,5 @@
+import { Media } from './../../providers/media';
+import { CommentPage } from './../comment/comment';
 import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 
@@ -13,7 +15,14 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class TrackMenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController ) { }
+  constructor(public navCtrl: NavController, 
+  public navParams: NavParams, 
+  public viewCtrl: ViewController,
+  private media: Media ) { }
+
+  navToComment = () => {
+    this.navCtrl.push(CommentPage, { "id": this.media.getCurrentMediaID() });
+  }
 
   close() {
     this.viewCtrl.dismiss();

@@ -15,6 +15,8 @@ export class Media {
 
   private mediaUrl: string = 'http://media.mw.metropolia.fi/wbma';
   // private user: any =  JSON.parse(localStorage.getItem("user"));
+  private currentMediaID: number;
+
   private token: string = '';
   private limit: number = 10;
 
@@ -23,6 +25,14 @@ export class Media {
   iTunesUrl: string = 'https://itunes.apple.com/search?media=music&term='
 
   constructor(public http: Http, private authService: Authentication, private jsonp: Jsonp) { }
+
+  getCurrentMediaID = () => {
+    return this.currentMediaID;
+  }
+
+  setCurrentMediaID = (id: number) => {
+    this.currentMediaID = id;
+  }
 
   getKeyword = () => {
     return this.keyword;
