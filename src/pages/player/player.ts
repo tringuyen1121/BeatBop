@@ -1,3 +1,4 @@
+import { Player } from './../../providers/player';
 import { CommentPage } from './../comment/comment';
 import { LoginPage } from './../login/login';
 import { SearchPage } from './../search/search';
@@ -30,7 +31,6 @@ export class PlayerPage {
   private favouriteList: any = [];
 
   private hasLiked: boolean = false;
-  public isPlaying: boolean = false;
 
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
@@ -43,20 +43,21 @@ export class PlayerPage {
     public viewCtrl: ViewController,
     private auth: Authentication,
     private media: Media,
+    private playerService: Player,
     private fav: Favourite) {
-      this.id = this.navParams.get("id");
-      this.media.setCurrentMediaID(this.id);
+    this.id = this.navParams.get("id");
+    this.media.setCurrentMediaID(this.id);
   }
 
   ionViewWillEnter() {
-    console.log(this.isPlaying);
+    console.log(this.audioProvider.current);
+    this.hasLiked = false;
 
     this.media.getMediaByID(this.id)
       .subscribe(
       res => {
         this.selectedMedia = res;
         this.selectedMedia.preload = 'metadata';
-        this.selectedMedia.id = res.file_id;
         this.selectedMedia.src = this.sourcePath + res.filename;
 
         this.media.getUserByID(this.selectedMedia.user_id)
@@ -86,7 +87,6 @@ export class PlayerPage {
       .subscribe(
       res => {
         this.favouriteList = res;
-        console.log(this.favouriteList);
         for (let favourite of this.favouriteList) {
           if (this.auth.getUser().user_id === favourite.user_id) {
             this.hasLiked = true;
@@ -96,14 +96,14 @@ export class PlayerPage {
   }
 
   back = () => {
-    this.pauseSelectedTrack();
+    this.playerService.stopSelectedTrack();
     this.navCtrl.pop();
   }
 
   navToSearch = () => {
-    this.pauseSelectedTrack();
+    this.playerService.stopSelectedTrack();
     this.navCtrl.push(SearchPage)
-    .then(() => {
+      .then(() => {
         // find the index of the current view controller:
         const index = this.viewCtrl.index;
         // then remove it from the navigation stack
@@ -112,11 +112,11 @@ export class PlayerPage {
   }
 
   navToComment = () => {
-    this.navCtrl.push(CommentPage, { "id": this.id});
+    this.navCtrl.push(CommentPage, { "id": this.id });
   }
 
   logout = () => {
-    this.pauseSelectedTrack();
+    this.playerService.stopSelectedTrack();
     localStorage.removeItem("user");
     this.auth.removeUser();
     this.auth.logged = false;
@@ -132,25 +132,14 @@ export class PlayerPage {
     popover.present();
   }
 
-  operateSelectedTrack = () => {
-    if (!this.isPlaying) this.playSelectedTrack();
-    else this.pauseSelectedTrack();
-  }
-
-  playSelectedTrack = () => {
-    this.isPlaying = true;
-    // use AudioProvider to control selected track 
-    this.audioProvider.play(this.selectedMedia.id);
-  }
-
-  pauseSelectedTrack = () => {
-    this.isPlaying = false;
-    // use AudioProvider to control selected track
-    this.audioProvider.pause(this.selectedMedia.id);
-  }
-
-  onTrackFinished(track: any) {
-    console.log('Track finished', track)
+  operateSelectedTrack = (id) => {
+    if (!this.playerService.isPlaying) {
+      this.playerService.isPlaying = true;
+      this.playerService.playSelectedTrack(id);
+    } else {
+      this.playerService.isPlaying = false;
+      this.playerService.pauseSelectedTrack();
+    }
   }
 
   setLike = () => {
@@ -159,12 +148,12 @@ export class PlayerPage {
       param.file_id = +this.id;
       this.fav.createFavorite(param)
         .subscribe(res => {
-          this.hasLiked = !this.hasLiked;
+          this.hasLiked = true;
         });
     } else {
       this.fav.deleteFavorite(this.id)
         .subscribe(res => {
-          this.hasLiked = !this.hasLiked;
+          this.hasLiked = false;
         });
     }
   }

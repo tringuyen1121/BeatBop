@@ -10,5 +10,5 @@
   <button ion-item (click)="close()">Info</button>
   <button ion-item (click)="close()" *ngIf="!show">Report</button>
   <button ion-item (click)="close()" *ngIf="show">Edit</button>
-  <button ion-item (click)="close()" *ngIf="show">Delete</button>
+  <button ion-item (click)="deleteTrack()" *ngIf="show">Delete</button>
 </ion-list>

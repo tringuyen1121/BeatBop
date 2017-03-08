@@ -22,13 +22,34 @@
 
 
 <ion-content>
-  <ion-card padding *ngFor="let comment of commentList" (press)="presentConfirm($event, comment.comment_id, comment.user_id)">
-    <h4>{{comment.username}}</h4>
-    <p>{{comment.comment}}</p>
-    <ion-row text-right>
-      <span style="color:#9f9f9f">{{comment.time}}</span>
-    </ion-row>
-  </ion-card>
+  <ion-list>
+
+    <ion-item margin-left>
+      <ion-thumbnail item-left>
+        <img src="{{selectedMedia.art}}">
+      </ion-thumbnail>
+      <h4>{{selectedMedia.artist}}</h4>
+      <p text-wrap>{{selectedMedia.description}}</p>
+
+      <ion-row text-right>
+        <span style="color:#9f9f9f">{{selectedMedia.time}}</span>
+      </ion-row>
+      
+      <button ion-button icon-only clear item-right id="like-button" margin-horizontal (click)="setLike()">
+        <ion-icon name="icon-heart-outline" *ngIf="!hasLiked"></ion-icon>
+        <ion-icon name="icon-heart" color="danger" *ngIf="hasLiked"></ion-icon>
+      </button>
+    </ion-item>
+
+    <ion-item *ngFor="let comment of commentList" (press)="presentConfirm($event, comment.comment_id, comment.user_id)" margin-left>
+      <h4>{{comment.username}}</h4>
+      <p margin-right>{{comment.comment}}</p>
+      <ion-row text-right>
+        <span style="color:#9f9f9f">{{comment.time}}</span>
+      </ion-row>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
 
 <ion-footer>

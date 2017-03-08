@@ -17,6 +17,7 @@ page-home {
 
     ul {
         @include flexbox_grid(3, 16px);
+        list-style: none;
 
         li {
             margin-bottom: 16px;

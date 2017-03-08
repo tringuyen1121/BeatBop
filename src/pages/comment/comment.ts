@@ -20,6 +20,10 @@ export class CommentPage {
 
   private id: number;
   private commentList: any = [];
+
+  private selectedMedia: any = {};
+  private hasLiked: boolean = false;
+
   private likeNumber: number;
 
   constructor(
@@ -33,10 +37,53 @@ export class CommentPage {
     this.id = this.navParams.get("id");
   }
 
+
+
   ionViewWillEnter() {
+
+    this.mediaService.getMediaByID(this.id)
+      .subscribe(
+      res => {
+        this.selectedMedia = res;
+        this.selectedMedia.time = moment(this.selectedMedia.time_added).fromNow();
+
+        this.mediaService.getUserByID(this.selectedMedia.user_id)
+          .subscribe(
+          resp => {
+            this.selectedMedia.artist = resp.username;
+          });
+
+        this.mediaService.getCover(this.selectedMedia.title.substring(7, this.selectedMedia.title.length))
+          .subscribe(
+          res => {
+            let item = res.results[0];
+            if (!item || !item.artworkUrl100) {
+              //if item not found
+              this.selectedMedia.art = '';
+            } else {
+              //if item found, add coverUrl property to object.
+              this.selectedMedia.art = item.artworkUrl100;
+            }
+          });
+
+        console.log(this.selectedMedia);
+      }, err => console.log(err)
+      );
+
+    // this.fav.getFavouriteByFile(this.id)
+    //   .subscribe(
+    //   res => {
+    //     this.likeNumber = res.length;
+    //   });
+
     this.fav.getFavouriteByFile(this.id)
       .subscribe(
       res => {
+        for (let favourite of res) {
+          if (this.auth.getUser().user_id === favourite.user_id) {
+            this.hasLiked = true;
+          }
+        }
         this.likeNumber = res.length;
       });
 
@@ -100,6 +147,24 @@ export class CommentPage {
         ]
       });
       alert.present();
+    }
+  }
+
+  setLike = () => {
+    if (!this.hasLiked) {
+      let param: any = {};
+      param.file_id = +this.id;
+      this.fav.createFavorite(param)
+        .subscribe(res => {
+          this.hasLiked = true;
+          this.likeNumber += 1;
+        });
+    } else {
+      this.fav.deleteFavorite(this.id)
+        .subscribe(res => {
+          this.hasLiked = false;
+          this.likeNumber -= 1;
+        });
     }
   }
 }

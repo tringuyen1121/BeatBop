@@ -29,9 +29,21 @@ page-comment {
         }
     }
 
-    ion-card{
+    ion-item{
+        ion-label {
+            margin: 1.5rem auto!important;
+            white-space: normal!important;
+        }
         h4 {
             font-weight: bold!important;
+        }
+    }
+    
+    #like-button{
+        color: color(dark)!important;
+
+        ion-icon{
+            transform: translateY(-50%);
         }
     }
 

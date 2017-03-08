@@ -1,3 +1,4 @@
+import { AudioProvider } from 'ionic-audio';
 import { PlayerPage } from './../player/player';
 import { SearchPage } from './../search/search';
 import { UploadPage } from './../upload/upload';
@@ -24,6 +25,8 @@ export class HomePage {
   private allMediaList: any = [];
   private bbMediaList: any = [];
 
+  private playerBarShown: boolean = false;
+
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
 
@@ -32,6 +35,7 @@ export class HomePage {
     public navParams: NavParams,
     private media: Media,
     private auth: Authentication,
+    private audioService: AudioProvider,
     private el: ElementRef
   ) { }
 
@@ -69,9 +73,12 @@ export class HomePage {
               }
             });
         }
+      })
+
+      if (this.audioService.current != undefined) {
+        this.playerBarShown = true;
       }
-    )
-  };
+  }
 
   navToUpload = () => {
     this.navCtrl.push(UploadPage);

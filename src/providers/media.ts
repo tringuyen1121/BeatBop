@@ -72,6 +72,15 @@ export class Media {
       );
   }
 
+  deleteMedia = (id) => {
+    this.token = this.authService.getUser().token;
+    return this.http.delete(this.mediaUrl + '/media/' + id + '?token=' + this.token)
+      .map(
+      res =>
+        res.json()
+      );
+  }
+
   //get CoverArt of a song using Itunes Search API
   getCover = (title: string) => {
     return this.jsonp.get(this.iTunesUrl + title + '&callback=JSONP_CALLBACK')
