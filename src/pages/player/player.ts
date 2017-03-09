@@ -134,10 +134,8 @@ export class PlayerPage {
 
   operateSelectedTrack = (id) => {
     if (!this.playerService.isPlaying) {
-      this.playerService.isPlaying = true;
       this.playerService.playSelectedTrack(id);
     } else {
-      this.playerService.isPlaying = false;
       this.playerService.pauseSelectedTrack();
     }
   }

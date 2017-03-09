@@ -36,19 +36,21 @@ export class Player {
   }
 
   playSelectedTrack = (id) => {
+    this.isPlaying = true;
     if (this.audioProvider.current == undefined) {
       // use AudioProvider to control selected track 
       this.audioProvider.play(id);
-      this.setTrackId();
     } else this.audioProvider.play(this.audioProvider.current);
   }
 
   pauseSelectedTrack = () => {
+    this.isPlaying = false;
     // use AudioProvider to control selected track
     this.audioProvider.pause(this.audioProvider.current);
   }
 
   stopSelectedTrack = () => {
+    this.isPlaying = false;
     // use AudioProvider to control selected track
     this.audioProvider.stop(this.audioProvider.current);
   }

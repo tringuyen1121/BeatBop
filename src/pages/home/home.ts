@@ -75,10 +75,6 @@ export class HomePage {
             });
         }
       })
-
-      if(this.playerService.isPlaying) {
-        this.playerBarShown = true;
-      }
   }
 
   navToUpload = () => {
