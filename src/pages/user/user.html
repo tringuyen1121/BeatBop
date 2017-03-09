@@ -1,0 +1,67 @@
+<!--
+  Generated template for the User page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header padding-bottom>
+
+  <ion-navbar hideBackButton="true">
+    <ion-title><img class="logo" src="./../assets/images/logo.svg"></ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="icon-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button icon-only (click)="navToSearch()">
+        <ion-icon name="icon-search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="navToSetting()">
+        <ion-icon name="icon-settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-item margin-left no-lines>
+    <ion-thumbnail item-left (press)="popAvatarMenu($event)">
+      <img src="">
+    </ion-thumbnail>
+
+    <!--<ion-row>
+      <ion-col no-padding>
+        <h3 text-center>15</h3>
+        <p text-center>posts</p>
+      </ion-col>
+      <ion-col no-padding>
+        <h3 text-center>127</h3>
+        <p text-center>followers</p>
+      </ion-col>
+      <ion-col no-padding>
+        <h3 text-center>52</h3>
+        <p text-center>following</p>
+      </ion-col>
+    </ion-row>-->
+    <h4 margin-horizontal text-capitalize>{{selectedUser.username}}</h4>
+    <p margin-horizontal>{{selectedUser.full_name}}</p>
+
+    <ion-row>
+      <button ion-button round outline id="follow-button" no-margin>Follow</button>
+    </ion-row>
+  </ion-item>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ul no-margin no-padding>
+    <li *ngFor="let file of mediaList" (click)="showMedia(file.file_id)">
+      <img [alt]="file.title" [src]="file.art">
+    </li>
+  </ul>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" (click)="navToUpload()"><ion-icon name="icon-upload"></ion-icon></button>
+  </ion-fab>
+</ion-content>

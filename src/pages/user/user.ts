@@ -1,66 +1,68 @@
+import { AvatarMenuPage } from './../avatar-menu/avatar-menu';
 import { SettingsPage } from './../settings/settings';
-import { PlayerPage } from './../player/player';
-import { SearchPage } from './../search/search';
 import { UploadPage } from './../upload/upload';
-import { LoginPage } from './../login/login';
+import { SearchPage } from './../search/search';
+import { PlayerPage } from './../player/player';
 
-import { Authentication } from './../../providers/authentication';
 import { Media } from './../../providers/media';
-import { Player } from './../../providers/player';
+import { Users } from './../../providers/users';
 
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
 
 /*
-  Generated class for the Home page.
+  Generated class for the User page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-user',
+  templateUrl: 'user.html'
 })
-export class HomePage {
+export class UserPage {
 
-  private allMediaList: any = [];
-  private bbMediaList: any = [];
+  private id: number;
+  private selectedUser: any = {};
 
-  private playerBarShown: boolean = false;
-  private playingTrack: any = {};
+  private mediaList: any = [];
 
   private coverPath: string = './../assets/images/cover.jpg';
-
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private media: Media,
-    private auth: Authentication,
-    private playerService: Player,
-    private el: ElementRef
-  ) { }
-
+    public popoverCtrl: PopoverController,
+    private userService: Users,
+    private mediaService: Media) {
+    this.id = this.navParams.get("id");
+  }
 
   ionViewWillEnter() {
-    //clear the bbMediaList
-    this.bbMediaList = [];
+    this.mediaList = [];
 
-    this.media.getMedia().subscribe(
+    this.userService.getUserInfo(this.id).subscribe(
       res => {
-        this.allMediaList = res.files;
-        for (let singleMedia of this.allMediaList) {
+        this.selectedUser = res;
+        console.log(this.selectedUser);
+      }, err => console.log(err)
+    );
 
-          this.media.getMediaByID(singleMedia.file_id).subscribe(
+    this.mediaService.getMediaByUser(this.id).subscribe(
+      res => {
+        let temp = res;
+        for (let singleMedia of temp) {
+
+          this.mediaService.getMediaByID(singleMedia.file_id).subscribe(
             res => {
               singleMedia = res;
 
               //only display music files of our team
-              if (singleMedia.title.startsWith(this.media.getKeyword())) {
+              if (singleMedia.title.startsWith(this.mediaService.getKeyword())) {
 
-                this.media.getCover(singleMedia.title.substring(7, singleMedia.title.length))
+                this.mediaService.getCover(singleMedia.title.substring(7, singleMedia.title.length))
                   .subscribe(
                   res => {
                     let item = res.results[0];
@@ -71,13 +73,22 @@ export class HomePage {
                       //if item found, add coverUrl property to object.
                       singleMedia.art = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
                     }
-                    this.bbMediaList.unshift(singleMedia);
+                    this.mediaList.unshift(singleMedia);
                   }, err => console.log(err)
                   )
               }
             });
         }
       });
+
+  }
+
+  back = () => {
+    this.navCtrl.pop();
+  }
+
+  navToSearch = () => {
+    this.navCtrl.push(SearchPage);
   }
 
   navToUpload = () => {
@@ -88,12 +99,13 @@ export class HomePage {
     this.navCtrl.push(PlayerPage, { "id": id });
   }
 
-  navToSearch = () => {
-    this.navCtrl.push(SearchPage);
-  }
-
   navToSetting = () => {
     this.navCtrl.push(SettingsPage);
+  }
+
+  popAvatarMenu(myEvent) {
+    let popover = this.popoverCtrl.create(AvatarMenuPage);
+    popover.present();
   }
 
 }

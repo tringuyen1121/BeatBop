@@ -1,0 +1,18 @@
+@import './../../app/functions';
+
+page-avatar-menu {
+
+    ion-list{
+        background-color: white!important;
+
+        ion-list-header{
+            box-shadow: 0 1px 2px 3px #dfdfdf!important;
+        }
+
+        ion-label{
+            margin: 16px auto!important;
+            color: color(dark)!important;
+        }
+    
+    }
+}

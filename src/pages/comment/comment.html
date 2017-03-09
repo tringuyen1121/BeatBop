@@ -1,0 +1,69 @@
+<!--
+  Generated template for the Comment page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-buttons left>
+      <button ion-button icon-only margin-horizontal (click)="back()">
+        <ion-icon name="icon-back" color="dark"></ion-icon>
+      </button>
+
+      <button ion-button id="like-number">
+        <ion-icon name="icon-heart" color="danger"></ion-icon>
+        <span text-lowercase style="margin: auto 7px; font-size: 1.6rem" color="dark">{{likeNumber}} like{{ likeNumber > 1 ? 's' : '' }}</span>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+
+    <ion-item margin-left>
+      <ion-thumbnail item-left>
+        <img src="{{selectedMedia.art}}">
+      </ion-thumbnail>
+      <h4>{{selectedMedia.artist}}</h4>
+      <p text-wrap>{{selectedMedia.description}}</p>
+
+      <ion-row text-right>
+        <span style="color:#9f9f9f">{{selectedMedia.time}}</span>
+      </ion-row>
+      
+      <button ion-button icon-only clear item-right id="like-button" margin-horizontal (click)="setLike()">
+        <ion-icon name="icon-heart-outline" *ngIf="!hasLiked"></ion-icon>
+        <ion-icon name="icon-heart" color="danger" *ngIf="hasLiked"></ion-icon>
+      </button>
+    </ion-item>
+
+    <ion-item *ngFor="let comment of commentList" (press)="presentConfirm($event, comment.comment_id, comment.user_id)" margin-left>
+      <h4>{{comment.username}}</h4>
+      <p margin-right>{{comment.comment}}</p>
+      <ion-row text-right>
+        <span style="color:#9f9f9f">{{comment.time}}</span>
+      </ion-row>
+    </ion-item>
+
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-navbar no-padding>
+    <form #commentForm="ngForm" (ngSubmit)="postComment(commentForm.value); commentForm.reset()" id="commentForm">
+      <ion-item padding-left>
+        <ion-textarea name="comment" placeholder="Add a comment..." ngModel required></ion-textarea>
+      </ion-item>
+
+      <ion-buttons left no-margin>
+        <button icon-only ion-button no-margin type="submit" [disabled]="!commentForm.valid">
+          <ion-icon name="icon-checked"></ion-icon>
+        </button>
+      </ion-buttons>
+    </form>
+  </ion-navbar>
+</ion-footer>

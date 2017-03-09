@@ -16,8 +16,8 @@ import { NavController, NavParams, LoadingController, AlertController } from 'io
 })
 export class UploadPage {
 
- private loader;
- private fileName: string = '';
+  private loader;
+  private fileName: string = '';
 
   constructor(
     public navCtrl: NavController,
@@ -27,7 +27,7 @@ export class UploadPage {
     private alertCtrl: AlertController
   ) { }
 
- fileChange = (evt: any) => {
+  fileChange = (evt: any) => {
     const file = evt.target.files;
     this.fileName = file[0].name;
   }
@@ -70,6 +70,10 @@ export class UploadPage {
       content: message
     });
     this.loader.present();
+  }
+
+  back = () => {
+    this.navCtrl.pop();
   }
 
 }

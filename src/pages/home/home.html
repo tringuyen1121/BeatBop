@@ -8,19 +8,16 @@
   <ion-navbar>
 
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="icon-menu"></ion-icon>
     </button>
     <ion-title></ion-title>
 
-    <ion-buttons end>
+    <ion-buttons right>
       <button ion-button icon-only (click)="navToSearch()">
-        <ion-icon name="search"></ion-icon>
+        <ion-icon name="icon-search"></ion-icon>
       </button>
-    </ion-buttons>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="logout()">
-        <ion-icon name="log-out"></ion-icon>
+      <button ion-button icon-only (click)="navToSetting()">
+        <ion-icon name="icon-settings"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -31,11 +28,11 @@
 <ion-content padding>
   <ul no-margin no-padding>
     <li *ngFor="let file of bbMediaList" (click)="showMedia(file.file_id)">
-      <img [alt]="file.title" [src]="file.coverUrl">
+      <img [alt]="file.title" [src]="file.art">
     </li>
   </ul>
 
   <ion-fab right bottom>
-    <button *ngIf="this.auth.logged" ion-fab color="secondary" (click)="navToUpload()" ><ion-icon name="cloud-upload"></ion-icon></button>
+    <button *ngIf="this.auth.logged" ion-fab color="secondary" (click)="navToUpload()"><ion-icon name="icon-upload"></ion-icon></button>
   </ion-fab>
 </ion-content>

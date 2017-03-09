@@ -1,0 +1,98 @@
+<!--
+  Generated template for the Player page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton="true">
+    <ion-title><img class="logo" src="./../assets/images/logo.svg"></ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="icon-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons right>
+      <button ion-button icon-only (click)="navToSearch()">
+        <ion-icon name="icon-search"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="navToSetting()">
+        <ion-icon name="icon-settings"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="no-scroll">
+  <audio-track #track [track]="selectedMedia" (click)="infoTrack(track)" *ngIf="selectedMedia.media_type === 'audio'">
+    <div id="cover" style="width:100%" text-center>
+      <img alt="{{track.title}}" src="{{track.art}}">
+    </div>
+
+    <h5 text-center>{{track.title | title}}</h5>
+    <button text-capitalize ion-button clear no-margin (click)="showUser(selectedMedia.user_id)" style="width: 100%">{{track.artist}}</button>
+    <div id="progress-bar-and-buttons" style="width:100%">
+
+      <audio-track-progress-bar duration progress [audioTrack]="track"></audio-track-progress-bar>
+
+      <div id="operate-buttons" style="width:100%" text-center>
+        <button ion-button icon-only clear class="icon-medium">
+          <ion-icon name="icon-skip-backward"></ion-icon>
+        </button>
+        <button ion-button icon-only clear (click)="operateSelectedTrack(track.id)" class="icon-large">
+          <ion-icon name="icon-play" *ngIf="!track.isPlaying"></ion-icon>
+          <ion-icon name="icon-pause" *ngIf="track.isPlaying"></ion-icon>
+        </button>
+        <button ion-button icon-only clear class="icon-medium">
+          <ion-icon name="icon-skip-forward"></ion-icon>
+        </button>
+      </div>
+
+    </div>
+  </audio-track>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only clear (click)="setLike()">
+            <ion-icon name="icon-heart-outline" *ngIf="!hasLiked"></ion-icon>
+            <ion-icon name="icon-heart" *ngIf="hasLiked" color="contrast"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only clear (click)="navToComment()">
+            <ion-icon name="icon-comment-bubble"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only clear>
+            <ion-icon name="icon-share"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+      <ion-col>
+        <ion-buttons text-center>
+          <button ion-button icon-only clear (click)="popTrackMenu($event)">
+            <ion-icon name="icon-more"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,50 @@
+@import './../../app/functions';
+
+page-comment {
+    ion-content, ion-header, ion-footer {
+        background-color: white!important;
+    }
+
+    button {
+        background: transparent!important;
+        box-shadow: none!important;;
+    }
+
+    #like-number{
+        .icon-ios {
+            transform: translateY(-5%);
+        }
+        transform: translateY(0.5%);
+    }
+
+    #commentForm {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        button {
+            height: 100%;
+            width: 4.5em;
+            background-color: color(primary)!important;
+        }
+    }
+
+    ion-item{
+        ion-label {
+            margin: 1.5rem auto!important;
+            white-space: normal!important;
+        }
+        h4 {
+            font-weight: bold!important;
+        }
+    }
+    
+    #like-button{
+        color: color(dark)!important;
+
+        ion-icon{
+            transform: translateY(-50%);
+        }
+    }
+
+}

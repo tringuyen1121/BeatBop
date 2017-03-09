@@ -1,0 +1,52 @@
+@import './../../app/functions';
+
+page-user {
+    ion-header {
+        @include gradient(color(primary), color(secondary), color(complementary));
+
+        ion-item {           
+            ion-label {
+                margin: 0 1.5rem!important;
+            }
+            // ion-thumbnail{
+            //     margin: 0 16px 0 0!important;
+            // }
+            h4{
+                font-size: 2rem!important;
+            }
+        }
+
+        h4, h3, p {
+            color: white!important;
+        }
+    }
+
+    .logo{
+        display: inline-block;
+        height: 70%!important;
+    }
+
+    #follow-button{
+        border-color: white;
+        color: white;
+        font-size: 1.5rem!important;
+        border-width: 2px!important;
+        margin: 10px 16px 0 8px;
+        transform: none;
+    }
+
+    ul {
+        @include flexbox_grid(3, 16px);
+        list-style: none;
+
+        li {
+            margin-bottom: 16px;
+        }
+    }
+
+   ion-fab {
+       ion-icon::before{
+        font-size: 25px!important;
+       } 
+    }
+}

@@ -1,13 +1,65 @@
 // http://ionicframework.com/docs/v2/theming/
 @import 'functions';
+@import 'icons-style';
 
 @mixin gradient($fColor, $sColor, $tColor) {
-  background: #00ad7c; /* Old browsers */
-  background: -moz-linear-gradient(-45deg, $fColor 0%, $sColor 68%, $tColor 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, $fColor 0%,$sColor 68%,$tColor 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, $fColor 0%,$sColor 68%,$tColor 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$fColor, endColorstr=$tColor,GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  background: #00ad7c !important; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, $fColor 0%, $sColor 68%, $tColor 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, $fColor 0%,$sColor 68%,$tColor 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, $fColor 0%,$sColor 68%,$tColor 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$fColor, endColorstr=$tColor,GradientType=1 ) !important; /* IE6-9 fallback on horizontal gradient */
 }
+
+@mixin gradientText($fColor, $sColor, $tColor) {
+  background: #00ad7c !important; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, $fColor 0%, $sColor 68%, $tColor 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, $fColor 0%,$sColor 68%,$tColor 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, $fColor 0%,$sColor 68%,$tColor 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$fColor, endColorstr=$tColor,GradientType=1 ) !important; /* IE6-9 fallback on horizontal gradient */
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: #764897;
+}
+
+//Create icon
+@mixin makeIcon($arg, $val) {
+  .ion-ios-#{$arg}:before ,
+  .ion-ios-#{$arg}-circle:before ,
+  .ion-ios-#{$arg}-circle-outline:before ,
+  .ion-ios-#{$arg}-outline:before ,
+  .ion-md-#{$arg}:before ,
+  .ion-md-#{$arg}-circle:before ,
+  .ion-md-#{$arg}-circle-outline:before ,
+  .ion-md-#{$arg}-outline:before  {
+    content: $val;
+    font-size: 17px;
+  }
+}
+
+//create Icon set
+@include makeIcon(icon-cancel, '\e911'); //cancel
+@include makeIcon(icon-checked, '\e912'); //checked
+@include makeIcon(icon-comment-bubble, '\e913'); //comment-bubble
+@include makeIcon(icon-back, '\e900'); //back
+@include makeIcon(icon-forward, '\e901'); //forward
+@include makeIcon(icon-heart, '\e902'); //heart
+@include makeIcon(icon-heart-outline, '\e903'); //heart-outline
+@include makeIcon(icon-login, '\e904'); //login
+@include makeIcon(icon-logout, '\e905'); //logout
+@include makeIcon(icon-menu, '\e906'); //menu
+@include makeIcon(icon-more, '\e907'); //more
+@include makeIcon(icon-pause, '\e908'); //pause
+@include makeIcon(icon-play, '\e909'); //play
+@include makeIcon(icon-search, '\e90a'); //search
+@include makeIcon(icon-settings, '\e90b'); //settings
+@include makeIcon(icon-share, '\e90c'); //share
+@include makeIcon(icon-skip-backward, '\e90d'); //skip-backward
+@include makeIcon(icon-skip-forward, '\e90e'); //skip-forward
+@include makeIcon(icon-upload, '\e90f'); //upload
+@include makeIcon(icon-home, '\e910'); //home
+@include makeIcon(icon-user, '\e971'); //user
+
 
 //align the last row to grid
 @mixin flexbox_grid($columns, $gutter_width){
@@ -91,6 +143,13 @@ ion-content ion-list button {
 
 //center title
 ion-header {
+  .bar-button-md {
+    transform: translateY(-40%);
+  }
+  .bar-button-ios {
+    transform: translateY(-15%);
+  }
+  
   .button-md {
     box-shadow: none;
   }
@@ -105,6 +164,15 @@ ion-header {
     -webkit-justify-content: center;
     justify-content: center;
     height: 100%; //make .toolbar-title in IOS take 100% height
+  }
+
+  .toolbar-content-md {
+      position: absolute;  // take a flexbox item out of the flow
+      width: 100%;         // take all the space, including that of the buttons on the left and right side
+      z-index: -1;         // go under the buttons
+  }
+  .toolbar-md * {
+        height: 100%;
   }
 }
 

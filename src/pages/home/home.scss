@@ -17,11 +17,17 @@ page-home {
 
     ul {
         @include flexbox_grid(3, 16px);
+        list-style: none;
+
+        li {
+            margin-bottom: 16px;
+        }
     }
 
-
-    ul li {
-        margin-bottom: 16px;
+   ion-fab {
+       ion-icon::before{
+        font-size: 25px!important;
+       } 
     }
 
     @media screen and (min-width: 1000px) {

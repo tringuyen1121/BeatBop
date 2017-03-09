@@ -3,24 +3,13 @@
 
 page-search {
 
-     ion-header {
-        height: 27%;
+    ion-header {
         @include gradient(color(primary), color(secondary), color(complementary));
-    }
-
-    .toolbar-content-md {
-        position: absolute;  // take a flexbox item out of the flow
-        width: 100%;         // take all the space, including that of the buttons on the left and right side
-        z-index: -1;         // go under the buttons
-    }
-
-    .toolbar-md * {
-        height: 100%;
     }
 
     .logo{
         display: inline-block;
-        height: 80%!important;
+        height: 70%!important;
     }
 
     form {
@@ -41,6 +30,7 @@ page-search {
         font-size: 1.5rem!important;
         border-width: 2px!important;
         padding: 0.5em 1.5em!important;
+        transform: none;
     }
 
     #resultList{
@@ -62,6 +52,12 @@ page-search {
                 justify-content: center;
                 margin-left: 1em;
                 color: white;
+
+                h3 {
+                    white-space: nowrap; 
+                    text-overflow:ellipsis;
+                    overflow: hidden;
+                }
             }
         }
     }

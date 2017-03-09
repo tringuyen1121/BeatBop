@@ -4,6 +4,7 @@ $font-path: "../assets/fonts";
 
 @import "ionic.globals";
 @import "../app/functions";
+@import "icons-variables";
 
 
 // Shared Variables
@@ -17,6 +18,7 @@ $toolbar-background: transparent;
 $font-family-base: "Josefin Sans";
 $background-color: #141414;
 $label-text-color: #fff;
+$toolbar-border-color: transparent;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -31,7 +33,8 @@ $colors: (
   secondary:    #52d681,
   complementary:#b5ff7d,
   dark:         #141414,
-  danger:       #ef002f
+  danger:       #ef002f,
+  contrast:     #a52a2a,
 );
 
 
@@ -58,6 +61,7 @@ $label-md-text-color: #fff;
 $item-md-padding-top: 30px;
 $item-md-padding-left: 0px;
 $toolbar-md-title-font-size: 2.5rem;
+$toolbar-md-border-color: transparent;
 $list-md-background-color: transparent;
 
 
@@ -71,6 +75,7 @@ $label-wp-text-color: #fff;
 $item-wp-padding-top: 30px;
 $item-wp-padding-left: 0px;
 $toolbar-wp-title-font-size: 2.5rem;
+$toolbar-wp-border-color: transparent;
 $list-wp-background-color: transparent;
 
 

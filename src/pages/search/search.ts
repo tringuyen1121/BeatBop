@@ -1,4 +1,7 @@
+import { PlayerPage } from './../player/player';
+
 import { Media } from './../../providers/media';
+
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -40,7 +43,7 @@ export class SearchPage {
             this.media.getUserByID(singleMedia.user_id)
               .subscribe(
               res => {
-                singleMedia.username = res.username;
+                singleMedia.artist = res.username;
               }
               )
 
@@ -50,10 +53,10 @@ export class SearchPage {
                 let item = res.results[0];
                 if (!item || !item.artworkUrl100) {
                   //if item not found
-                  singleMedia.coverUrl = '';
+                  singleMedia.art = '';
                 } else {
                   //if item found, add coverUrl property to object.
-                  singleMedia.coverUrl = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
+                  singleMedia.art = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
                 }
 
                 this.resultList.push(singleMedia);
@@ -62,5 +65,13 @@ export class SearchPage {
         }
       }, err => console.log(err)
       );
+  }
+
+  showMedia = (id: number) => {
+     this.navCtrl.push(PlayerPage, { "id": id });
+  }
+
+  back = () => {
+    this.navCtrl.pop();
   }
 }

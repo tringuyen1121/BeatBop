@@ -5,11 +5,17 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
+  <ion-navbar hideBackButton="true">
+    
     <ion-title>Sign Up</ion-title>
-  </ion-navbar>
 
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="icon-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
 </ion-header>
 
 

@@ -15,6 +15,8 @@ export class Media {
 
   private mediaUrl: string = 'http://media.mw.metropolia.fi/wbma';
   // private user: any =  JSON.parse(localStorage.getItem("user"));
+  private currentMediaID: number;
+
   private token: string = '';
   private limit: number = 10;
 
@@ -23,6 +25,14 @@ export class Media {
   iTunesUrl: string = 'https://itunes.apple.com/search?media=music&term='
 
   constructor(public http: Http, private authService: Authentication, private jsonp: Jsonp) { }
+
+  getCurrentMediaID = () => {
+    return this.currentMediaID;
+  }
+
+  setCurrentMediaID = (id: number) => {
+    this.currentMediaID = id;
+  }
 
   getKeyword = () => {
     return this.keyword;
@@ -44,6 +54,14 @@ export class Media {
       );
   }
 
+  getMediaByUser = (id: number) => {
+    return this.http.get(this.mediaUrl + '/media/user/' + id)
+      .map(
+      res =>
+        res.json()
+      );
+  }
+
   getUserByID = (id: number) => {
     this.token = this.authService.getUser().token;
     return this.http.get(this.mediaUrl + '/users/' + id + '?token=' + this.token)
@@ -56,6 +74,15 @@ export class Media {
   uploadMedia = (formContent: any) => {
     this.token = this.authService.getUser().token;
     return this.http.post(this.mediaUrl + '/media?token=' + this.token, formContent)
+      .map(
+      res =>
+        res.json()
+      );
+  }
+
+  deleteMedia = (id) => {
+    this.token = this.authService.getUser().token;
+    return this.http.delete(this.mediaUrl + '/media/' + id + '?token=' + this.token)
       .map(
       res =>
         res.json()

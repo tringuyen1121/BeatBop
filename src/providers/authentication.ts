@@ -49,4 +49,12 @@ export class Authentication {
       );
   }
 
+  checkUsername = (username: string) => {
+    return this.http.get(this.url + '/users/username/' + username)
+      .map(
+      res =>
+        res.json()
+      );
+  }
+
 }

@@ -1,12 +1,14 @@
+import { LoginPage } from './../pages/login/login';
+import { HomePage } from './../pages/home/home';
+import { UserPage } from './../pages/user/user';
 import { SearchPage } from './../pages/search/search';
 import { UploadPage } from './../pages/upload/upload';
+
+import { Authentication } from './../providers/authentication';
+
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
-import { Page2 } from '../pages/page2/page2';
-import { LoginPage } from './../pages/login/login';
-import { HomePage } from './../pages/home/home';
 
 
 @Component({
@@ -19,14 +21,19 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public menuCtrl: MenuController) {
+  constructor(
+    public platform: Platform, 
+    public menuCtrl: MenuController,
+    private auth: Authentication) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Upload', component: UploadPage },
-      { title: 'Search', component: SearchPage }
+      { title: 'Search', component: SearchPage },
+      { title: 'Chart', component: HomePage },
+      { title: 'Profile', component: UserPage }
     ];
 
   }
@@ -43,8 +50,10 @@ export class MyApp {
   openPage(page) {
     if (page.title === 'Home') {
       this.menuCtrl.close();
-    } else {
-      this.nav.push(page.component);
+    } else if (page.title === 'Profile') {
+      this.nav.push(page.component, { "id": this.auth.getUser().user_id });
     }
   }
+
+  
 }

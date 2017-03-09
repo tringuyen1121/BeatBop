@@ -1,0 +1,12 @@
+@import './../../app/functions';
+
+page-track-menu {
+    ion-list{
+        background-color: white;
+    }
+
+    ion-label {
+        margin: 1rem 0 !important;
+        color: color(dark);
+    }
+}

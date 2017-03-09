@@ -1,0 +1,14 @@
+<!--
+  Generated template for the TrackMenu page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-list no-lines no-margin padding>
+  <button ion-item (click)="close()">Add to Playlist</button>
+  <button ion-item (click)="navToComment()">Share</button>
+  <button ion-item (click)="close()">Info</button>
+  <button ion-item (click)="close()" *ngIf="!show">Report</button>
+  <button ion-item (click)="close()" *ngIf="show">Edit</button>
+  <button ion-item (click)="deleteTrack()" *ngIf="show">Delete</button>
+</ion-list>
