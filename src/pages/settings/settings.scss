@@ -1,0 +1,28 @@
+@import './../../app/functions';
+
+page-settings {
+    ion-header {
+        background-color: transparent!important;
+
+        .toolbar-title {
+            color: color(dark)!important;
+            font-size: 1.3rem!important;
+        }
+    }
+
+    ion-content {
+        background-color: white!important;
+    }
+
+    ion-list{
+        background-color: white!important;
+
+        ion-label{
+            margin: 5px auto!important;
+            color: color(dark)!important;
+        }
+        
+
+    }
+
+}

@@ -1,3 +1,7 @@
+import { AvatarMenuPage } from './../pages/avatar-menu/avatar-menu';
+import { SettingsPage } from './../pages/settings/settings';
+import { Users } from './../providers/users';
+import { UserPage } from './../pages/user/user';
 import { Player } from './../providers/player';
 import { Comment } from './../providers/comment';
 import { CommentPage } from './../pages/comment/comment';
@@ -32,6 +36,9 @@ import { MyApp } from './app.component';
     PlayerPage,
     TrackMenuPage,
     CommentPage,
+    UserPage,
+    SettingsPage,
+    AvatarMenuPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -49,6 +56,9 @@ import { MyApp } from './app.component';
     PlayerPage,
     TrackMenuPage,
     CommentPage,
+    UserPage,
+    SettingsPage,
+    AvatarMenuPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler },
@@ -57,7 +67,8 @@ import { MyApp } from './app.component';
     Thumbnails,
     Favourite,
     Comment,
-    Player
+    Player,
+    Users
   ]
 })
 export class AppModule { }

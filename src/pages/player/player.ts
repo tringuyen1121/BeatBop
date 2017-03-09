@@ -1,6 +1,7 @@
+import { SettingsPage } from './../settings/settings';
+import { UserPage } from './../user/user';
 import { Player } from './../../providers/player';
 import { CommentPage } from './../comment/comment';
-import { LoginPage } from './../login/login';
 import { SearchPage } from './../search/search';
 import { TrackMenuPage } from './../track-menu/track-menu';
 
@@ -32,6 +33,7 @@ export class PlayerPage {
 
   private hasLiked: boolean = false;
 
+  private coverPath: string= './../assets/images/cover.jpg';
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
 
@@ -72,7 +74,7 @@ export class PlayerPage {
             let item = res.results[0];
             if (!item || !item.artworkUrl100) {
               //if item not found
-              this.selectedMedia.art = '';
+              this.selectedMedia.art = this.coverPath;
             } else {
               //if item found, add coverUrl property to object.
               this.selectedMedia.art = item.artworkUrl100.replace(this.resolutionRegex, this.newResolution);
@@ -115,21 +117,21 @@ export class PlayerPage {
     this.navCtrl.push(CommentPage, { "id": this.id });
   }
 
-  logout = () => {
-    this.playerService.stopSelectedTrack();
-    localStorage.removeItem("user");
-    this.auth.removeUser();
-    this.auth.logged = false;
-    this.navCtrl.setRoot(LoginPage);
+  showUser = (id: number) => {
+    this.navCtrl.push(UserPage, { "id": id });
   }
 
   infoTrack = (track) => {
     console.log(track);
   }
 
-  presentPopover(myEvent) {
+  popTrackMenu(myEvent) {
     let popover = this.popoverCtrl.create(TrackMenuPage);
     popover.present();
+  }
+
+  navToSetting = () => {
+    this.navCtrl.push(SettingsPage);
   }
 
   operateSelectedTrack = (id) => {

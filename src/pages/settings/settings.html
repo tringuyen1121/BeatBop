@@ -1,0 +1,40 @@
+<!--
+  Generated template for the Settings page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar hideBackButton="true">
+
+    <ion-title>Options</ion-title>
+
+    <ion-buttons left>
+      <button ion-button icon-only (click)="back()">
+        <ion-icon name="icon-back" color="dark"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header padding-left text-uppercase> Account </ion-list-header>
+    <ion-item padding-left (click)="navToUser()"> Your Profile </ion-item>
+    <ion-item padding-left (click)="alertEdit()"> Edit Profile </ion-item>
+    <ion-item padding-left (click)="alertPassword()"> Change Password </ion-item>
+    <ion-item padding-left> 
+      <ion-label> Private Account </ion-label>
+      <ion-toggle></ion-toggle>
+    </ion-item>
+
+    <ion-list-header padding-left text-uppercase> Support</ion-list-header>
+    <ion-item padding-left> Help </ion-item>
+    <ion-item padding-left> Legal</ion-item>
+    <ion-item padding-left> About </ion-item>
+
+    <ion-list-header padding-left text-uppercase> </ion-list-header>
+    <ion-item padding-left (click)="logout()"> Log Out </ion-item>
+  </ion-list>
+</ion-content>

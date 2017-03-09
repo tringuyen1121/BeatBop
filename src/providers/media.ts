@@ -54,6 +54,14 @@ export class Media {
       );
   }
 
+  getMediaByUser = (id: number) => {
+    return this.http.get(this.mediaUrl + '/media/user/' + id)
+      .map(
+      res =>
+        res.json()
+      );
+  }
+
   getUserByID = (id: number) => {
     this.token = this.authService.getUser().token;
     return this.http.get(this.mediaUrl + '/users/' + id + '?token=' + this.token)

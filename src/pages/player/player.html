@@ -18,8 +18,8 @@
       <button ion-button icon-only (click)="navToSearch()">
         <ion-icon name="icon-search"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="logout()">
-        <ion-icon name="icon-logout"></ion-icon>
+      <button ion-button icon-only (click)="navToSetting()">
+        <ion-icon name="icon-settings"></ion-icon>
       </button>
     </ion-buttons>
 
@@ -34,7 +34,7 @@
     </div>
 
     <h5 text-center>{{track.title | title}}</h5>
-    <p text-center>{{track.artist}}</p>
+    <button text-capitalize ion-button clear no-margin (click)="showUser(selectedMedia.user_id)" style="width: 100%">{{track.artist}}</button>
     <div id="progress-bar-and-buttons" style="width:100%">
 
       <audio-track-progress-bar duration progress [audioTrack]="track"></audio-track-progress-bar>
@@ -87,7 +87,7 @@
 
       <ion-col>
         <ion-buttons text-center>
-          <button ion-button icon-only clear (click)="presentPopover($event)">
+          <button ion-button icon-only clear (click)="popTrackMenu($event)">
             <ion-icon name="icon-more"></ion-icon>
           </button>
         </ion-buttons>

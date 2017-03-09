@@ -16,7 +16,7 @@
       <button ion-button icon-only (click)="navToSearch()">
         <ion-icon name="icon-search"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="logout()">
+      <button ion-button icon-only (click)="navToSetting()">
         <ion-icon name="icon-settings"></ion-icon>
       </button>
     </ion-buttons>
@@ -32,7 +32,7 @@
     </li>
   </ul>
 
-  <!--<ion-fab right bottom>
+  <ion-fab right bottom>
     <button *ngIf="this.auth.logged" ion-fab color="secondary" (click)="navToUpload()"><ion-icon name="icon-upload"></ion-icon></button>
-  </ion-fab>-->
+  </ion-fab>
 </ion-content>

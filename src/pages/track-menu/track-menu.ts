@@ -54,14 +54,25 @@ export class TrackMenuPage {
             this.media.deleteMedia(this.media.getCurrentMediaID()).subscribe(
               res => {
                 console.log(res);
-                this.navCtrl.setPages([
-                  { page: HomePage }
-                ]);
+                this.notify('File was deleted successfully! Please press BACK!');
               }, err => console.log(err)
             );
           }
         }
       ]
+    });
+    alert.present();
+  }
+
+  notify = (message: string) => {
+    let alert = this.alertCtrl.create({
+      title: message,
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.navCtrl.popToRoot();
+        }
+      }]
     });
     alert.present();
   }
