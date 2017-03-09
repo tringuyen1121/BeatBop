@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <ion-title><img class="logo" src="./../assets/images/logo.svg"></ion-title>
+    <ion-title><img class="logo" src="./assets/images/logo.svg"></ion-title>
 
     <ion-buttons left>
       <button ion-button icon-only (click)="back()">
@@ -29,8 +29,8 @@
 
 <ion-content class="no-scroll">
   <audio-track #track [track]="selectedMedia" (click)="infoTrack(track)" *ngIf="selectedMedia.media_type === 'audio'">
-    <div id="cover" style="width:100%" text-center>
-      <img alt="{{track.title}}" src="{{track.art}}">
+    <div id="cover" style="width:100%" padding-horizontal>
+      <img alt="{{track.title}}" src="{{track.art}}" style="display: block">
     </div>
 
     <h5 text-center>{{track.title | title}}</h5>

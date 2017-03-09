@@ -33,7 +33,7 @@ export class PlayerPage {
 
   private hasLiked: boolean = false;
 
-  private coverPath: string= './../assets/images/cover.jpg';
+  private coverPath: string= './assets/images/cover.jpg';
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
 
