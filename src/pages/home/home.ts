@@ -58,7 +58,7 @@ export class HomePage {
               singleMedia = res;
 
               //only display music files of our team
-              if (singleMedia.title.startsWith(this.media.getKeyword())) {
+              if (singleMedia.title.startsWith(this.media.getKeyword()) && singleMedia.media_type === 'audio') {
 
                 this.media.getCover(singleMedia.title.substring(7, singleMedia.title.length))
                   .subscribe(

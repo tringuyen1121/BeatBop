@@ -87,6 +87,10 @@ export class UserPage {
     this.navCtrl.pop();
   }
 
+  toRoot = () => {
+    this.navCtrl.popToRoot();
+  }
+
   navToSearch = () => {
     this.navCtrl.push(SearchPage);
   }

@@ -33,7 +33,7 @@ export class PlayerPage {
 
   private hasLiked: boolean = false;
 
-  private coverPath: string= './assets/images/cover.jpg';
+  private coverPath: string = './assets/images/cover.jpg';
   private resolutionRegex = /100x100/;
   private newResolution = '500x500';
 
@@ -102,6 +102,11 @@ export class PlayerPage {
     this.navCtrl.pop();
   }
 
+  toRoot = () => {
+    this.playerService.stopSelectedTrack();
+    this.navCtrl.popToRoot();
+  }
+
   navToSearch = () => {
     this.playerService.stopSelectedTrack();
     this.navCtrl.push(SearchPage)
@@ -118,7 +123,14 @@ export class PlayerPage {
   }
 
   showUser = (id: number) => {
-    this.navCtrl.push(UserPage, { "id": id });
+    this.playerService.stopSelectedTrack();
+    this.navCtrl.push(UserPage, { "id": id })
+    .then(() => {
+        // find the index of the current view controller:
+        const index = this.viewCtrl.index;
+        // then remove it from the navigation stack
+        this.navCtrl.remove(index);
+      });
   }
 
   infoTrack = (track) => {

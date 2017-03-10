@@ -68,7 +68,11 @@ export class SearchPage {
   }
 
   showMedia = (id: number) => {
-     this.navCtrl.push(PlayerPage, { "id": id });
+    this.navCtrl.push(PlayerPage, { "id": id });
+  }
+
+  toRoot = () => {
+    this.navCtrl.popToRoot();
   }
 
   back = () => {
