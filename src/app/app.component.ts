@@ -52,7 +52,7 @@ export class MyApp {
       this.menuCtrl.close();
     } else if (page.title === 'Profile') {
       this.nav.push(page.component, { "id": this.auth.getUser().user_id });
-    }
+    } else this.nav.push(page.component);
   }
 
   

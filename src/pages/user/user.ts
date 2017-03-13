@@ -1,3 +1,4 @@
+import { Authentication } from './../../providers/authentication';
 import { AvatarMenuPage } from './../avatar-menu/avatar-menu';
 import { SettingsPage } from './../settings/settings';
 import { UploadPage } from './../upload/upload';
@@ -26,6 +27,7 @@ export class UserPage {
   private selectedUser: any = {};
 
   private mediaList: any = [];
+  private editable: boolean = false;
 
   private coverPath: string = './assets/images/cover.jpg';
   private resolutionRegex = /100x100/;
@@ -36,11 +38,16 @@ export class UserPage {
     public navParams: NavParams,
     public popoverCtrl: PopoverController,
     private userService: Users,
+    private auth: Authentication,
     private mediaService: Media) {
     this.id = this.navParams.get("id");
   }
 
   ionViewWillEnter() {
+    this.editable = false;
+    if (this.auth.getUser().user_id === this.id) {
+      this.editable = true;
+    }
     this.mediaList = [];
 
     this.userService.getUserInfo(this.id).subscribe(
@@ -108,8 +115,10 @@ export class UserPage {
   }
 
   popAvatarMenu(myEvent) {
-    let popover = this.popoverCtrl.create(AvatarMenuPage);
-    popover.present();
+    if (this.auth.getUser().user_id === this.id) {
+      let popover = this.popoverCtrl.create(AvatarMenuPage);
+      popover.present();
+    }
   }
 
 }

@@ -97,18 +97,19 @@ export class PlayerPage {
       });
   }
 
-  back = () => {
+  ionViewWillUnload() {
     this.playerService.stopSelectedTrack();
+  }
+
+  back = () => {
     this.navCtrl.pop();
   }
 
   toRoot = () => {
-    this.playerService.stopSelectedTrack();
     this.navCtrl.popToRoot();
   }
 
   navToSearch = () => {
-    this.playerService.stopSelectedTrack();
     this.navCtrl.push(SearchPage)
       .then(() => {
         // find the index of the current view controller:
@@ -123,7 +124,6 @@ export class PlayerPage {
   }
 
   showUser = (id: number) => {
-    this.playerService.stopSelectedTrack();
     this.navCtrl.push(UserPage, { "id": id })
     .then(() => {
         // find the index of the current view controller:
