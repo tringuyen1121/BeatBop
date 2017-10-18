@@ -32,7 +32,7 @@ Also more details can be found in [trello](https://trello.com/b/QKZb7Rd3/beatbop
 This app was tested successfully on Samsung galaxy S4 Android 5.0 and Chrome browser.
 
 ## Bugs and Feedback
-For bugs, questions and discussions please use the [GitHub Issues](https://github.com/tringuyen1121/Khonsu/issues).
+For bugs, questions and discussions please use the [GitHub Issues](https://github.com/tringuyen1121/Beatbop/issues).
 
 ## Liscense
-This project is licensed under the MIT License - see [License](https://github.com/tringuyen1121/Khonsu/blob/master/LICENSE) 
+This project is licensed under the MIT License - see [License](https://github.com/tringuyen1121/Beatbop/blob/master/LICENSE) 
